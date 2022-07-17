@@ -1,0 +1,18 @@
+.popup__login {
+    width: 100%;
+    max-width: 430px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 34px 36px 36px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    position: relative;  
+  }
+  
+  @media screen and (max-width: 767px) {
+    .popup__login {
+      max-width: 80vw;
+      padding: 30px 18px;
+    }
+  }

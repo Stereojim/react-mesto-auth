@@ -1,14 +1,24 @@
-function InfoTooltip ({onClose, isOpen, message}) {
-
+export default function InfoTooltip({
+  onClose,
+  status: { isOpen, successful },
+}) {
   return (
-    <div className={`popup popup_type_infotool ${isOpen ? 'popup_opened' : ''}`}>
-      <div className="popup__container">
-        <img src='' alt="" className="popup__authorization-icon" />
-        <p className="popup__title-info">hr</p>
-        <button type="button" className="popup__button-close" onClick={onClose} />
-      </div>
+    <div className={`popup ${isOpen && "popup_opened"}`}>
+      <div className="popup__login">
+        <div
+          className={`popup__authorization ${
+            successful ? "popup__authorization-image_success" : "popup__authorization-image_failed"
+          }`}
+        ></div>
+        <h2 className="popup__authorization-title">{successful ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте еще раз.'}</h2>
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          className="popup__button-close popup__button-close_type_login"
+        ></button>
+      
+      {/* <div onClick={onClose} className="popup__overlay"></div> */}
     </div>
   );
 }
-
-export default InfoTooltip ;

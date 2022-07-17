@@ -1,0 +1,13 @@
+.popup__button-close_type_login {
+align-self: center;
+margin-left: 8px;
+margin-bottom:340px;
+
+  }
+  
+  @media screen and (max-width: 550px) {
+    .popup__button-close_type_login {
+        margin-left: 6px;
+        margin-bottom:310px;
+    }
+  }

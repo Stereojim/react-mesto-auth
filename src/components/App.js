@@ -253,21 +253,8 @@ function App() {
       });
   }
 
-/*   function handleRegister({ email, password }) {
-    auth
-      .register(email, password)
-      .then((data) => {
-        if (data) {
-          handleInfoTooltip(true);
-          history.push("/sign-in");
-        }
-      })
-      .catch((err) => {
-        handleInfoTooltip(false);
-        console.log(err);
-      });
-  } */
 
+//разлогиниться
   function signOut() {
     localStorage.removeItem("jwt");
     setLoggedIn(false);
