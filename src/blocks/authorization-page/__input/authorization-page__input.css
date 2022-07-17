@@ -1,0 +1,17 @@
+.authorization-page__input {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    border: none;
+    border-bottom: 2px solid #CCCCCC;
+    background: #000000;
+    color: #ffffff;
+    outline: none;
+    padding-bottom: 13px;
+    margin-bottom: 30px;
+}
+
+.authorization-page__input ::placeholder {
+  color: #ccc;
+}

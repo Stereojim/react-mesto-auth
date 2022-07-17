@@ -14,14 +14,19 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._checkResponse);
   }
 
   editProfile(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         name,
         about,
@@ -64,7 +69,10 @@ class Api {
   editProfileImage(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         avatar,
       }),
@@ -77,12 +85,74 @@ class Api {
     }
     return Promise.reject(`Ошибка ${res.status}`);
   }
+
+  updateHeaders() {
+    this._headers = {
+      "Content-Type": "application/json",
+      Authorization: `${localStorage.getItem("jwt")}`,
+    };
+  }
+
+register(email, password) {
+    return fetch(`${this._baseUrl}/signup`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      })
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+  };
+
+  login(email, password)  {
+    return fetch(`${this._baseUrl}/signin`, {
+      method: 'POST', 
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+  };
+
+  getContent = (token) => {
+    return fetch(`https://auth.nomoreparties.co/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => data);
+  };
 }
 
-export const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-41",
+const api = new Api({
+  /*   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-41", */
+  baseUrl: "https://auth.nomoreparties.co",
   headers: {
-    authorization: "b2724072-c1fe-4122-878d-e22552110f33",
     "Content-Type": "application/json",
+    /*    'Authorization': "b2724072-c1fe-4122-878d-e22552110f33", */
+    Authorization: `${localStorage.getItem("jwt")}`,
   },
 });
+
+export default api;

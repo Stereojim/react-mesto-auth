@@ -2,9 +2,24 @@
 @import url(./vendor/fonts.css);
 @import url(./blocks/body/body.css);
 @import url(./blocks/page/page.css);
-@import url(./blocks/header/header.css);
 @import url(./blocks/content/content.css);
+@import url(./blocks/elements/elements.css);
+
+@import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__link/header__link.css);
+
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/profile/__author/profile__author.css);
+@import url(./blocks/profile/__avatar/profile__avatar.css);
+@import url(./blocks/profile/__overlay/profile__overlay.css);
+@import url(./blocks/profile/__rename/profile__rename.css);
+@import url(./blocks/profile/__info/profile__info.css);
+@import url(./blocks/profile/__name/profile__name.css);
+@import url(./blocks/profile/__profession/profile__profession.css);
+@import url(./blocks/profile/__edit-button/profile__edit-button.css);
+@import url(./blocks/profile/__add-button/profile__add-button.css);
+
 @import url(./blocks/popup/popup.css);
 @import url(./blocks/popup/_opened/popup_opened.css);
 @import url(./blocks/popup/__container/popup__container.css);
@@ -25,17 +40,7 @@
 @import url(./blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(./blocks/popup/__input/_has-error/popup__input_has-error.css);
 @import url(./blocks/popup/__form/_type/popup__form_type_place-remove.css);
-@import url(./blocks/profile/profile.css);
-@import url(./blocks/profile/__author/profile__author.css);
-@import url(./blocks/profile/__avatar/profile__avatar.css);
-@import url(./blocks/profile/__overlay/profile__overlay.css);
-@import url(./blocks/profile/__rename/profile__rename.css);
-@import url(./blocks/profile/__info/profile__info.css);
-@import url(./blocks/profile/__name/profile__name.css);
-@import url(./blocks/profile/__profession/profile__profession.css);
-@import url(./blocks/profile/__edit-button/profile__edit-button.css);
-@import url(./blocks/profile/__add-button/profile__add-button.css);
-@import url(./blocks/elements/elements.css);
+
 @import url(./blocks/card/card.css);
 @import url(./blocks/card/__image/card__image.css);
 @import url(./blocks/card/__place-name/card__place-name.css);
@@ -43,7 +48,15 @@
 @import url(./blocks/card/__like-button/_active/card__like-button_active.css);
 @import url(./blocks/card/__like-count/card__like-count.css);
 @import url(./blocks/card/__image-button/card__image-button.css);
-@import url(./blocks/footer/footer.css);
-@import url(./blocks/footer/__capture/footer__capture.css);
 @import url(./blocks/card/__remove-button/card__remove-button.css);
 @import url(./blocks/card/__remove-button/_visible/card__remove-button_visible.css);
+
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__capture/footer__capture.css);
+
+@import url(./blocks/authorization-page/authorization-page.css);
+@import url(./blocks/authorization-page/__form/authorization-page__form.css);
+@import url(./blocks/authorization-page/__input/authorization-page__input.css);
+@import url(./blocks/authorization-page/__submit/authorization-page__submit.css);
+@import url(./blocks/authorization-page/__title/authorization-page__title.css);
+@import url(./blocks/authorization-page/__register-link/authorization-page__register-link.css);

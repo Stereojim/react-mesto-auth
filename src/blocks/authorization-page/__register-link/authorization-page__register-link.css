@@ -1,0 +1,19 @@
+.authorization-page__register-link {
+        
+    color: #fff;
+        text-decoration: none;
+        margin: 15px 0 0;
+        text-align: center;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        padding-bottom: 10px;
+        bottom: 50px;
+      }
+      
+      .authorization-page__register-link:hover {
+        opacity: 0.6;
+      }
+      .authorization-page__register-link:visited {
+        color: #fff;
+      }

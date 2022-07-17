@@ -1,0 +1,16 @@
+.authorization-page {
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+  }
+    
+    @media screen and (max-width: 767px) {
+      .register  {
+        max-width: 260px;
+      }
+    
+}
