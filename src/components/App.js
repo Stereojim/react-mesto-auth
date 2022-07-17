@@ -3,12 +3,7 @@ import "../index.css";
 import api from "../utils/api.js";
 import Login from "./Login";
 import Register from "./Register";
-import {
-  Route,
-  Redirect,
-  Switch,
-  useHistory,
-} from "react-router-dom";
+import { Route, Redirect, Switch, useHistory } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoToolTip";
 import Header from "./Header";
@@ -19,6 +14,9 @@ import Confirmation from "../Confirmation";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import * as auth from '../utils/auth';
+import formAccepted from '../images/FormYes.png'
+
 
 function App() {
   const history = useHistory();
@@ -39,34 +37,31 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [profileEmail, setProfileEmail] = useState("");
 
+  const JWTtoken = localStorage.getItem('jwt');
+
   // проверка на наличие токена
-  useEffect(
-    () => {
-      const jwt = localStorage.getItem("jwt");
-      if (jwt) {
-        api
-          .getProfile(jwt)
-          .then((data) => {
-            if (data) {
-              setProfileEmail(data.email);
-              setLoggedIn(true);
-              history.push("/");
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    },
-    [
-      /* history */
-    ]
-  );
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      api
+        .getProfile(jwt)
+        .then((data) => {
+          if (data) {
+            setProfileEmail(data.email);
+            setLoggedIn(true);
+            history.push("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [history]);
 
   useEffect(() => {
     if (loggedIn) {
       api
-        .getUserInfo()
+        .getProfile()
         .then((res) => {
           setCurrentUser(res);
         })
@@ -93,14 +88,14 @@ function App() {
   }
 
   function handleLogin({ email, password }) {
-    api
+    auth
       .login(email, password)
       .then((res) => {
         if (res.token) {
           setProfileEmail(email);
           localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
-          /* history.push('/'); */
+          history.push("/");
         }
       })
       .catch((err) => {
@@ -109,13 +104,15 @@ function App() {
       });
   }
 
+
+// регистрация
   function handleRegister({ email, password }) {
-    api
+    auth
       .register(email, password)
       .then((data) => {
         if (data) {
           handleInfoTooltip(true);
-          /* history.push('/sign-in'); */
+          history.push("/sign-in");
         }
       })
       .catch((err) => {
@@ -247,7 +244,7 @@ function App() {
           setProfileEmail(email);
           localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
-          /* history.push('/') */
+          history.push("/");
         }
       })
       .catch((err) => {
@@ -256,26 +253,26 @@ function App() {
       });
   }
 
-  function handleRegister({ email, password }) {
-    api
+/*   function handleRegister({ email, password }) {
+    auth
       .register(email, password)
       .then((data) => {
         if (data) {
           handleInfoTooltip(true);
-          /* history.push('/sign-in'); */
+          history.push("/sign-in");
         }
       })
       .catch((err) => {
         handleInfoTooltip(false);
         console.log(err);
       });
-  }
+  } */
 
   function signOut() {
     localStorage.removeItem("jwt");
     setLoggedIn(false);
     setProfileEmail("");
-    /*  history.push('/sign-in'); */
+    history.push("/sign-in");
   }
 
   function handleLogin() {

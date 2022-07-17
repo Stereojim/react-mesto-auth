@@ -6,16 +6,18 @@ class Api {
 
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
-      method: "GET",
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': "b2724072-c1fe-4122-878d-e22552110f33",
+      },
     }).then(this._checkResponse);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      method: "GET",
       headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json',
+        'Authorization': "b2724072-c1fe-4122-878d-e22552110f33",
       },
     }).then(this._checkResponse);
   }
@@ -24,8 +26,8 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
+        'Authorization': "b2724072-c1fe-4122-878d-e22552110f33",
       },
       body: JSON.stringify({
         name,
@@ -37,7 +39,8 @@ class Api {
   addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: {        'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
       body: JSON.stringify({
         name,
         link,
@@ -93,8 +96,8 @@ class Api {
     };
   }
 
-register(email, password) {
-    return fetch(`${this._baseUrl}/signup`, {
+/* register(email, password) {
+    return fetch('https://auth.nomoreparties.co/signup', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -128,7 +131,7 @@ register(email, password) {
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     })
-  };
+  }; */
 
   getContent = (token) => {
     return fetch(`https://auth.nomoreparties.co/users/me`, {
@@ -146,12 +149,12 @@ register(email, password) {
 }
 
 const api = new Api({
-  /*   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-41", */
-  baseUrl: "https://auth.nomoreparties.co",
+ baseUrl: "https://mesto.nomoreparties.co/v1/cohort-41",
+ /* baseUrl: "https://auth.nomoreparties.co",  */
   headers: {
     "Content-Type": "application/json",
-    /*    'Authorization': "b2724072-c1fe-4122-878d-e22552110f33", */
-    Authorization: `${localStorage.getItem("jwt")}`,
+   'Authorization': "b2724072-c1fe-4122-878d-e22552110f33",  
+    /* 'Authorization': `${localStorage.getItem("jwt")}`,  */
   },
 });
 
