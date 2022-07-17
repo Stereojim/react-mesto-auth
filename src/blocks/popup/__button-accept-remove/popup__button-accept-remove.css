@@ -1,0 +1,32 @@
+.popup__button-accept-remove {
+  background-color: black;
+  color: white;
+  border: 0;
+  border-radius: 2px;
+  width: 358px;
+  min-height: 50px;
+  align-self: center;
+  padding: 0;
+  margin-left: 36px;
+  margin-right: 36px;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 37px;
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+}
+
+.popup__button-accept-remove:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__button-accept-remove {
+    max-width: 100%;
+    height: 46px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

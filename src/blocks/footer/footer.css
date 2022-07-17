@@ -1,0 +1,23 @@
+.footer {
+  margin: 0;
+  margin: auto;
+  max-width: 880px;
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+@media screen and (max-width: 900px) {
+  .footer {
+    max-width: 90vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .footer {
+    margin-left: 5.9375vw;
+    font-size: 14px;
+    line-height: 17px;
+    padding-bottom: 38px;
+    padding-top: 15px;
+  }
+}

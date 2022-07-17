@@ -1,0 +1,12 @@
+.popup__button-close_type_picture-open {
+  margin-right: -40px;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__button-close_type_picture-open {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+}

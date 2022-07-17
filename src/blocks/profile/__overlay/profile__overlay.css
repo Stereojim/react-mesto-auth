@@ -1,0 +1,13 @@
+.profile__overlay {
+  position: absolute;
+background-position: 50%;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: 26px;
+  background-image: url(../../../images/editpen.svg);
+}
+

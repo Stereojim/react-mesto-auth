@@ -1,0 +1,10 @@
+.profile__author {
+height: 128px;
+width: 128px;
+  overflow: hidden;
+  position: relative;
+}
+
+.profile__author:hover .profile__overlay{
+  opacity: 0.8;
+}

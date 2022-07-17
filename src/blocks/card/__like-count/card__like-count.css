@@ -1,0 +1,6 @@
+.card__like-count {
+  justify-self: start;
+  margin: auto;
+  margin-bottom: 22px;
+  font-size: 13px;
+}

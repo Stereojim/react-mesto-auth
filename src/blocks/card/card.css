@@ -1,0 +1,15 @@
+.card {
+  display: grid;
+  grid-template-columns: 220px 62px;
+  grid-template-rows: 282px 79px;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 282px;
+  position: relative;
+}
