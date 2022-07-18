@@ -1,3 +1,13 @@
 .header__link {
-align-self: center;
-}
+    display: block;
+  
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .header__link:hover {
+    opacity: 0.6;
+    transition: 0.6s linear;
+  }

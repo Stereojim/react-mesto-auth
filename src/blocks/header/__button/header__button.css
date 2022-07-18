@@ -1,0 +1,16 @@
+.header__button {
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  color: #a9a9a9;
+  background-color: transparent;
+}
+
+.header__button:hover {
+    opacity: 0.85;
+  cursor: pointer;
+}
+
+.header__button:focus {
+    outline: 0;
+  }

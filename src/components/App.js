@@ -14,9 +14,8 @@ import Confirmation from "../Confirmation";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import * as auth from '../utils/auth';
-import formAccepted from '../images/FormYes.png'
-
+import * as auth from "../utils/auth";
+import formAccepted from "../images/FormYes.png";
 
 function App() {
   const history = useHistory();
@@ -37,14 +36,25 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [profileEmail, setProfileEmail] = useState("");
 
-  const JWTtoken = localStorage.getItem('jwt');
+  useEffect(() => {
+    if (loggedIn) {
+      api
+        .getProfile()
+        .then((res) => {
+          setCurrentUser(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   // проверка на наличие токена
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      api
-        .getProfile(jwt)
+      auth
+        .getContent(jwt)
         .then((data) => {
           if (data) {
             setProfileEmail(data.email);
@@ -58,19 +68,6 @@ function App() {
     }
   }, [history]);
 
-  useEffect(() => {
-    if (loggedIn) {
-      api
-        .getProfile()
-        .then((res) => {
-          setCurrentUser(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [loggedIn]);
-
   // получение изначальных карточек
   useEffect(() => {
     if (loggedIn) {
@@ -83,10 +80,12 @@ function App() {
     }
   }, [loggedIn]);
 
+  //всплытие уведомления
   function handleInfoTooltip(res) {
     setInfoTooltipShow({ ...isInfoTooltipShow, isOpen: true, successful: res });
   }
 
+  //логин
   function handleLogin({ email, password }) {
     auth
       .login(email, password)
@@ -104,8 +103,7 @@ function App() {
       });
   }
 
-
-// регистрация
+  // регистрация
   function handleRegister({ email, password }) {
     auth
       .register(email, password)
@@ -236,25 +234,7 @@ function App() {
       .catch((err) => console.log("засада: " + err));
   }
 
-  function handleLogin({ email, password }) {
-    api
-      .login(email, password)
-      .then((res) => {
-        if (res.token) {
-          setProfileEmail(email);
-          localStorage.setItem("jwt", res.token);
-          setLoggedIn(true);
-          history.push("/");
-        }
-      })
-      .catch((err) => {
-        handleInfoTooltip(false);
-        console.log(err);
-      });
-  }
-
-
-//разлогиниться
+  //разлогиниться
   function signOut() {
     localStorage.removeItem("jwt");
     setLoggedIn(false);
@@ -262,18 +242,14 @@ function App() {
     history.push("/sign-in");
   }
 
-  function handleLogin() {
-    setLoggedIn(true);
-  }
-
   return (
     <div className="body">
       <div className="page">
         <CurrentUserContext.Provider value={currentUser}>
           <Header
-            loggedIn={loggedIn}
             email={profileEmail}
             onSignOut={signOut}
+            loggedIn={loggedIn}
           />
           <Switch>
             <ProtectedRoute
