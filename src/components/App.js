@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "../index.css";
 import api from "../utils/api.js";
+import { Route, Redirect, Switch, useHistory } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
-import { Route, Redirect, Switch, useHistory } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoToolTip";
 import Header from "./Header";
@@ -15,7 +15,7 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import * as auth from "../utils/auth";
-import formAccepted from "../images/FormYes.png";
+
 
 function App() {
   const history = useHistory();
